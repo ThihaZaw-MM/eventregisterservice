@@ -47,6 +47,6 @@ app.use(express.static("./static"));
 app.use("/api/events", events);
 app.use("/api/users", users);
 
-app.listen(3000, function() {
-  console.log("API server running at port 3000");
+app.listen(3001, function() {
+  console.log("API server running at port 3001");
 });
