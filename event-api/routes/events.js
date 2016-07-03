@@ -8,6 +8,7 @@ var config = require("../config");
 
 var db = mongojs('eventmanager', ['events']);
 var dbRegs = mongojs('eventmanager', ['registrations']);
+var dbNewVisitor = mongojs('eventmanager', ['newvisitors']);
 
 // Get statuses
 router.get("/statuses", auth.ensureAuth(), function(req, res) {
@@ -50,15 +51,29 @@ router.post("/register", function(req, res){
 	var newRegistration = {
 		eventName: req.body.eventName,
 		visitorId: req.body.visitorId,
-		visitorName: req.body.visitorName,
-		companyName: req.body.companyName,
 		touchedLocation: req.body.touchedLocation,
 		touchedAt: new Date(),
 		submittedAt: new Date(),
-		submittedBy: req.body.touchedLocation,
+		submittedBy: req.body.touchedLocation
 	};
 
 	dbRegs.registrations.insert(newRegistration, function(err, data) {
+		if(err) res.status(500).json(err);
+		else res.status(200).json(data);
+	});
+});
+
+router.post("/registernew", function(req, res){
+	var newVisitor = {
+		eventName: req.body.eventName,
+		visitorId: req.body.visitorId,
+		visitorName: req.body.visitorName,
+		companyName: req.body.companyName,
+		phoneNumber: req.body.phoneNumber,
+		registeredAt: new Date(),
+		submittedAt: new Date(),
+	};
+	dbNewVisitor.newvisitors.insert(newVisitor, function(err, data) {
 		if(err) res.status(500).json(err);
 		else res.status(200).json(data);
 	});
