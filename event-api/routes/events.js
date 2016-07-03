@@ -69,6 +69,7 @@ router.post("/registernew", function(req, res){
 		visitorId: req.body.visitorId,
 		visitorName: req.body.visitorName,
 		companyName: req.body.companyName,
+		address : req.body.address,
 		phoneNumber: req.body.phoneNumber,
 		registeredAt: new Date(),
 		submittedAt: new Date(),
