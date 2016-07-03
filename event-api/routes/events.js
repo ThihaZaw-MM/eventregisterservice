@@ -51,6 +51,8 @@ router.post("/register", function(req, res){
 	var newRegistration = {
 		eventName: req.body.eventName,
 		visitorId: req.body.visitorId,
+		visitorName: req.body.visitorName,
+		companyName: req.body.companyName,
 		touchedLocation: req.body.touchedLocation,
 		touchedAt: new Date(),
 		submittedAt: new Date(),
